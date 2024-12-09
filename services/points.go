@@ -1,6 +1,7 @@
 package services
 
 import (
+	"math"
 	"regexp"
 	"strconv"
 	"strings"
@@ -32,7 +33,7 @@ func CalculatePoints(receipt models.Receipt) int {
 		trimmedDesc := strings.TrimSpace(item.ShortDescription)
 		if len(trimmedDesc)%3 == 0 {
 			if price, err := strconv.ParseFloat(item.Price, 64); err == nil {
-				points += int(price * 0.2)
+				points += int(math.Ceil(price * 0.2))
 			}
 		}
 	}
